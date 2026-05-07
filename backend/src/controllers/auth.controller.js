@@ -30,7 +30,7 @@ id:admin._id
 },process.env.jwt_secrets)
 
 
-res.cookie("token",token,{
+res.cookie("admintoken",token,{
     httpOnly: true,
     sameSite: "Strict",
 })
@@ -90,7 +90,7 @@ const token=jwt.sign({
 },process.env.jwt_secrets)
 
 
-res.cookie("token",token,{
+res.cookie("admintoken",token,{
       httpOnly: true,
     sameSite: "Strict",
 })
@@ -120,7 +120,7 @@ catch(err){
 }
 async function adminlogout(req,res){
 const token=req.cookies.token
- res.clearCookie("token")
+ res.clearCookie("admintoken")
  res.status(200).json({
         message:"admin logged out succesfully"
     })
@@ -149,7 +149,7 @@ const token=jwt.sign({
 },process.env.jwt_secrets)
 
 
-res.cookie("token",token,{
+res.cookie("employeetoken",token,{
     httpOnly: true,
     sameSite: "Lax",
 })
@@ -206,7 +206,7 @@ const token=jwt.sign({
 },process.env.jwt_secrets)
 
 
-res.cookie("token",token,{
+res.cookie("employeetoken",token,{
       httpOnly: true,
     sameSite: "Strict",
 })
@@ -236,7 +236,7 @@ catch(err){
 }
 async function employeelogout(req,res){
 const token=req.cookies.token
- res.clearCookie("token")
+ res.clearCookie("employeetoken")
  res.status(200).json({
         message:"employee logged out succesfully"
     })
@@ -265,7 +265,7 @@ async function getallemployees(){
 }
 async function getemployee(req,res){
     try{
-const token=req.cookies.token
+const token=req.cookies.employeetoken
 const content=await jwt.verify(token,process.env.jwt_secrets)
 const id=content.id
 const employee=await employeemodel.findOne({_id:id})
@@ -291,7 +291,7 @@ return res.status(200).json({
 }}
 async function getadmin(req,res){
     try{
-const token=req.cookies.token
+const token=req.cookies.admintoken
 const content=await jwt.verify(token,process.env.jwt_secrets)
 const id=content.id
 const admin=await adminmodel.findOne({_id:id})

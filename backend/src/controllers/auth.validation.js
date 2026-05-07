@@ -3,8 +3,8 @@ const {body}=require("express-validator")
 
 
 const loginvalidator=[
-body("password").isLength({min:6}).withMessage("password should be atleast of 6 characters"),
-body("email").isEmail().withMessage("Invalid Email"),
+body("password").isLength({min:6}).withMessage("password should be atleast of 6 characters")
+
 
 ]   
 

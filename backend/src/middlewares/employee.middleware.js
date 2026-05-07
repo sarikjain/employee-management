@@ -7,7 +7,7 @@ async function employeemiddleware(req,res,next){
 
 try{
 
-const token=req.cookies.token
+const token=req.cookies.employeetoken
 if(!token){
     return res.status(400).json({
         message:"No token alloted"

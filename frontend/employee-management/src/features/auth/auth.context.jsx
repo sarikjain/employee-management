@@ -10,19 +10,33 @@ export const AuthProvider = ({ children }) => {
 
 useEffect(() => {
     const setinitialstate = async () => {
-      console.log("useEffect running") // add this
-      try {
-        const employee = await getemployee();
-        const admin = await getadmin();
-      
-      } catch (err) {
-       
-        setemployee(null);
-        setadmin(null);
-      } finally {
-      
-        setloading(false);
+     
+    try {
+      const employee = await getemployee();
+
+      if(employee){
+        setemployee(employee.employee);
       }
+
+    } catch(err) {
+      setemployee(null);
+    }
+
+    try {
+      const admin = await getadmin();
+
+      if(admin){
+        setadmin(admin.admin);
+      }
+
+    } catch(err) {
+      setadmin(null);
+    }
+
+    setloading(false);
+      
+      
+    
     };
 
     setinitialstate();

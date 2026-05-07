@@ -1,7 +1,7 @@
 
 import { useContext } from "react";
 import { AuthContext } from "../auth.context";
-import {employeeRegister}  from "../auth.api";
+import {employeelogin, employeeRegister}  from "../auth.api";
 
 
 export const useauth=()=>{
@@ -30,8 +30,19 @@ location,
     }
 
     }
+    const handleemployeelogin=async({username,password})=>{
+try{
+    const res=await employeelogin({username,password});
+    setemployee(res.employee)
+    return res
+}catch(err){
+    console.log(err.message)
+}finally{
+    setloading(false)
+}
+    }
     return{
-        handleemployeeregister,setadmin,setemployee,loading,setloading,admin,employee
+       handleemployeelogin, handleemployeeregister,setadmin,setemployee,loading,setloading,admin,employee
     }
     
 }
