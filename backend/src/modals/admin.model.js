@@ -33,13 +33,11 @@ location:{
     type:String,
     required:true
 },
-adminid:{
-    type:Number,
-    required:true,
-},
+
 attendance:{
     type:Number,
     required:true}
+
 })
 
 
