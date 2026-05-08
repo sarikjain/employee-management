@@ -1,7 +1,7 @@
 
 import { useContext } from "react";
 import { AuthContext } from "../auth.context";
-import {employeelogin, employeeRegister}  from "../auth.api";
+import {adminlogin, employeelogin, employeeRegister, registeradmin}  from "../auth.api";
 
 
 export const useauth=()=>{
@@ -39,10 +39,58 @@ try{
     console.log(err.message)
 }finally{
     setloading(false)
+}}
+const handleadminregister=async({username,
+  salary,
+  age,
+  email,
+  password,
+  workathome,
+  location,
+  attendance})=>{
+    try{
+        const res=await registeradmin({ username,
+  salary,
+  age,
+  email,
+  password,
+  workathome,
+  location,
+  attendance,})
+  setadmin(res.admin)
+  return res
+    }
+    catch(err){
+        console.log(err.message)
+    }
+    finally{
+        setloading(false);
+    }
+  }
+
+  const handleadminlogin=async({username,password})=>{
+
+
+try{
+    const res=await adminlogin({username,password});
+    setadmin(res.admin)
+    return res
+}catch(err){
+    setadmin(null)
+}finally{
+    setloading(false)
 }
-    }
-    return{
-       handleemployeelogin, handleemployeeregister,setadmin,setemployee,loading,setloading,admin,employee
-    }
+
+
+
+
+
+  }
     
+    return{handleadminlogin,
+       handleadminregister,
+       handleemployeelogin,
+        handleemployeeregister,
+        setadmin,setemployee,loading,setloading,admin,employee
+    }
 }

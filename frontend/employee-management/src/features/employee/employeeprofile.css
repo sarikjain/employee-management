@@ -1,0 +1,103 @@
+/* EmployeeProfile.css */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+.profile-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.profile-card {
+  width: 900px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 25px;
+  padding: 40px;
+  color: white;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.top-section {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(to right, #3b82f6, #06b6d4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.top-section h1 {
+  font-size: 34px;
+  margin-bottom: 5px;
+}
+
+.top-section p {
+  color: #cbd5e1;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.info-box {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 25px;
+  border-radius: 18px;
+  transition: 0.3s ease;
+}
+
+.info-box:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.info-box h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: #38bdf8;
+}
+
+.info-box p {
+  font-size: 18px;
+  color: #f1f5f9;
+}
+
+@media (max-width: 768px) {
+  .profile-card {
+    width: 100%;
+    padding: 25px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .top-section {
+    flex-direction: column;
+    text-align: center;
+  }
+}

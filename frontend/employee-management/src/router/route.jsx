@@ -3,7 +3,9 @@
 import { createBrowserRouter } from "react-router"; 
 import EmployeeForm from "../features/auth/pages/employeeregister";
 import Login from "../features/auth/pages/employeelogin";
-
+import EmployeeProfile from "../features/employee/employeeprofile";
+import AdminForm from "../features/auth/pages/adminregister";
+import AdminLogin from "../features/auth/pages/adminlogin";
 
 
 export  const router=createBrowserRouter([
@@ -13,16 +15,27 @@ export  const router=createBrowserRouter([
 
     element:<EmployeeForm/>
 },{
-    path:"/"
-    ,element:<h1>hello</h1>
+    path:"/employee/profile"
+    ,element:<EmployeeProfile/>
 }
 ,
 {
     path:"/employee/login"
     ,element:<Login/>
 }
-
-
+,
+{
+    path:"/",
+    element:<h1>Hello</h1>
+},
+{
+    path:"/admin/register"
+    ,element:<AdminForm/>
+}
+,{
+    path:"/admin/login",
+    element:<AdminLogin/>
+}
 
 
 

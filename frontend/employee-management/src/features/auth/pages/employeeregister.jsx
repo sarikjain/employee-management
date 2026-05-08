@@ -32,7 +32,7 @@ const Navigate=useNavigate()
     e.preventDefault();
     const res=await handleemployeeregister(formData)
 if(res){
-    Navigate("/")
+    Navigate("/employee/profile")
 }
 
 

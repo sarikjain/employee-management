@@ -71,5 +71,39 @@ export async function getadmin(){
 }
 
 
+export async function registeradmin({
+ username,
+  salary,
+  age,
+  email,
+  password,
+  workathome,
+  location,
+  attendance
+}){
+  try{
+    const res=await axios.post("http://localhost:3000/api/auth/admin/register",{ username,salary,
+  age,
+  email,
+  password,
+  workathome,
+  location,
+  attendance},{withCredentials:true})
+  return res.data;
+  }
+  catch(err){
+console.log(err.message)
+  }
+}
+
+export async function adminlogin({username,password}){
+try{
+  const res=await axios.post("http://localhost:3000/api/auth/admin/login",{username,password},{withCredentials:true})
+return res.data
+}catch(err){
+  console.log(err.message)
+}
+}
+
 
 

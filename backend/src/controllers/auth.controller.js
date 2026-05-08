@@ -201,6 +201,8 @@ if(!employee){
         message: "Wrong password"
       });
     }
+    employee.attendance+=1;
+   await  employee.save()
 const token=jwt.sign({
    id:employee._id
 },process.env.jwt_secrets)

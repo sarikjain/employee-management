@@ -24,4 +24,5 @@ router.get("/admin/get",adminmiddleware,authcontroller.getadmin)
 
 
 
+
 module.exports=router;

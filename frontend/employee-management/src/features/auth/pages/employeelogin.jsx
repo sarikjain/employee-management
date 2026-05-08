@@ -13,7 +13,7 @@ const Login = () => {
 
 const res=await handleemployeelogin({username,password})
 if(res){
-    navigate("/")
+    navigate("/employee/profile")
 }
  }
 
