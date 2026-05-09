@@ -1,7 +1,7 @@
 
 import { useContext } from "react";
 import { AuthContext } from "../auth.context";
-import {adminlogin, employeelogin, employeeRegister, registeradmin}  from "../auth.api";
+import {adminlogin, employeelogin, employeelogout, employeeRegister, registeradmin}  from "../auth.api";
 
 
 export const useauth=()=>{
@@ -13,6 +13,7 @@ location,
   attendance})=>{ 
     setloading(true)
     try{
+        
         const res=await employeeRegister({ username,
   salary,
   age,
@@ -31,6 +32,7 @@ location,
 
     }
     const handleemployeelogin=async({username,password})=>{
+        setloading(true)
 try{
     const res=await employeelogin({username,password});
     setemployee(res.employee)
@@ -48,6 +50,7 @@ const handleadminregister=async({username,
   workathome,
   location,
   attendance})=>{
+    setloading(true)
     try{
         const res=await registeradmin({ username,
   salary,
@@ -69,7 +72,7 @@ const handleadminregister=async({username,
   }
 
   const handleadminlogin=async({username,password})=>{
-
+setloading(true)
 
 try{
     const res=await adminlogin({username,password});
@@ -81,13 +84,22 @@ try{
     setloading(false)
 }
 
+}
+const handlelogoutemployee=async()=>{
+setloading(true)
+try{
+    const res=await employeelogout()
 
-
-
-
-  }
+    setemployee(null)
+    return res
+}catch(err){
+    console.log(err.message)
+}finally{
+    setloading(false)
+}
+}
     
-    return{handleadminlogin,
+    return{handlelogoutemployee,handleadminlogin,
        handleadminregister,
        handleemployeelogin,
         handleemployeeregister,

@@ -104,6 +104,16 @@ return res.data
   console.log(err.message)
 }
 }
+export async function employeelogout(){
 
+
+  try{
+    const res=await axios.get("http://localhost:3000/api/auth/employee/logout",{withCredentials:true})
+  if(res){return res.data}
+  }catch(err){
+    console.log(err.message)
+  }
+
+}
 
 

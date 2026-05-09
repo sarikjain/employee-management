@@ -2,19 +2,30 @@ import React from "react";
 import "../employee/EmployeeProfile.css";
 
 import { useauth } from "../auth/hooks/auth.hooks";
+import { useNavigate } from "react-router";
 
 const EmployeeProfile = () => {
 
+const navigate=useNavigate()
 
-
-const {employee,loading}=useauth()
+const {employee,loading,handlelogoutemployee}=useauth()
 
 if(loading){
     return (
         <main><h1>Loading.......</h1></main>
     )
 }
+const handlelogout=async()=>{
 
+
+  const res=await handlelogoutemployee()
+  if(res){
+    navigate("/employee/login")
+  }
+
+
+
+}
 
 
 
@@ -70,6 +81,10 @@ if(loading){
 
         </div>
       </div>
+      <div className="profile-card"></div>
+      <button className="logout-btn" onClick={handlelogout}>
+  Logout
+</button>
     </div>
   );
 };
