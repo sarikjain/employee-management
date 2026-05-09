@@ -4,46 +4,144 @@ import { useState } from "react";
 import { Link } from "react-router";
 import { useauth } from "../hooks/auth.hooks";
 import { useNavigate } from "react-router";
+
 const Login = () => {
-    const navigate=useNavigate()
-    const {loading,handleemployeelogin}=useauth()
-    const [password,setpassword]=useState("")
-    const [username,setusername]=useState("")
-    const handlesubmit=async()=>{
 
-const res=await handleemployeelogin({username,password})
-if(res){
-    navigate("/employee/profile")
-}
- }
+    const navigate = useNavigate()
 
+    const { loading, handleemployeelogin } = useauth()
 
+    const [password, setpassword] = useState("")
+    const [username, setusername] = useState("")
 
- return (
-    <div className="container">
-      <div className="login-box">
-        <h1>Welcome Back</h1>
-        <p className="subtitle">Login to continue</p>
+    const [errors, seterrors] = useState({})
+    const [servererror, setservererror] = useState("")
 
-        <form>
-          <div className="input-group">
-            <label>Username</label>
-            <input onChange={(e)=>{setusername(e.target.value)}} type="text" placeholder="Enter your username" />
-          </div>
+    const handlesubmit = async () => {
+   const newerrors = {}
 
-          <div className="input-group">
-            <label>Password</label>
-            <input onChange={(e)=>{setpassword(e.target.value)}}  type="password" placeholder="Enter your password" />
-          </div>
-<button onClick={handlesubmit} type="button">Login</button>
-        </form>
+        if (!username.trim()) {
+            newerrors.username = "Username required"
+        }
 
-        <p className="footer-text">
-          Don’t have an account?<Link to={"/employee/register"}><span>Sign Up</span></Link>
-        </p>
-      </div>
-    </div>
-  );
+        if (!password.trim()) {
+            newerrors.password = "Password required"
+        }
+
+        if (Object.keys(newerrors).length > 0) {
+
+            seterrors(newerrors)
+
+            return
+        }
+
+        seterrors({})
+
+        try {
+
+            setservererror("")
+
+            const res = await handleemployeelogin({
+                username,
+                password
+            })
+
+            if (res) {
+                navigate("/employee/profile")
+            }
+
+        }
+        catch (err) {
+
+            setservererror(
+                err.response?.data?.message ||
+                "Something went wrong"
+            )
+        }
+    }
+
+    return (
+        <div className="container">
+
+            <div className="login-box">
+
+                <h1>Welcome Back</h1>
+
+                <p className="subtitle">
+                    Login to continue
+                </p>
+
+                <form>
+
+                    <div className="input-group">
+
+                        <label>Username</label>
+
+                        <input
+                            onChange={(e) => {
+                                setusername(e.target.value)
+                            }}
+                            type="text"
+                            placeholder="Enter your username"
+                        />
+
+                        <p className="error">
+                            {errors.username}
+                        </p>
+
+                    </div>
+
+                    <div className="input-group">
+
+                        <label>Password</label>
+
+                        <input
+                            onChange={(e) => {
+                                setpassword(e.target.value)
+                            }}
+                            type="password"
+                            placeholder="Enter your password"
+                        />
+
+                        <p className="error">
+                            {errors.password}
+                        </p>
+
+                    </div>
+
+                    <p className="error">
+                        {servererror}
+                    </p>
+
+                    <button
+                        onClick={handlesubmit}
+                        type="button"
+                    >
+                        {
+                            loading
+                                ?
+                                "Loading..."
+                                :
+                                "Login"
+                        }
+                    </button>
+
+                </form>
+
+                <p className="footer-text">
+
+                    Don’t have an account?
+
+                    <Link to={"/employee/register"}>
+                        <span>Sign Up</span>
+                    </Link>
+
+                </p>
+
+            </div>
+
+        </div>
+    );
 };
 
 export default Login;

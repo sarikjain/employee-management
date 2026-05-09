@@ -8,13 +8,11 @@ if(res){
 }
  }
  catch(err){
-    console.log(err.message)
+    throw err;
  }
 }
 
-async function employeeregister({}){
 
-}
 
 export async function employeeRegister({
   username,
@@ -46,7 +44,7 @@ export async function employeeRegister({
 
     return res.data;
   } catch (err) {
-    console.log(err.response?.data || err.message);
+    throw err;
   }
 }
 
@@ -57,7 +55,7 @@ export async function getemployee(){
     try{
         const res=await axios.get("http://localhost:3000/api/auth/employee/get",{withCredentials:true})
     return res.data}catch(err){
-        console.log(err);
+      throw err;
     }
 }
 export async function getadmin(){
@@ -66,7 +64,7 @@ export async function getadmin(){
     try{
         const res=await axios.get("http://localhost:3000/api/auth/admin/get",{withCredentials:true})
     return res.data}catch(err){
-        console.log(err);
+      throw err;
     }
 }
 
@@ -92,7 +90,7 @@ export async function registeradmin({
   return res.data;
   }
   catch(err){
-console.log(err.message)
+throw err
   }
 }
 
@@ -101,7 +99,7 @@ try{
   const res=await axios.post("http://localhost:3000/api/auth/admin/login",{username,password},{withCredentials:true})
 return res.data
 }catch(err){
-  console.log(err.message)
+  throw err
 }
 }
 export async function employeelogout(){
@@ -111,7 +109,7 @@ export async function employeelogout(){
     const res=await axios.get("http://localhost:3000/api/auth/employee/logout",{withCredentials:true})
   if(res){return res.data}
   }catch(err){
-    console.log(err.message)
+   throw err
   }
 
 }

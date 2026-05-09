@@ -12,10 +12,10 @@ useEffect(() => {
     const setinitialstate = async () => {
      
     try {
-      const employee = await getemployee();
+      const employeedata = await getemployee();
 
-      if(employee){
-        setemployee(employee.employee);
+      if(employeedata){
+        setemployee(employeedata.employee);
       }
 
     } catch(err) {
@@ -23,10 +23,10 @@ useEffect(() => {
     }
 
     try {
-      const admin = await getadmin();
+      const admindata = await getadmin();
 
-      if(admin){
-        setadmin(admin.admin);
+      if(admindata){
+        setadmin(admindata.admin);
       }
 
     } catch(err) {

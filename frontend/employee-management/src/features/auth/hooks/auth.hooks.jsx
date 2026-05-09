@@ -25,7 +25,7 @@ location,
   setemployee(res.employee)
   return res
     }catch(err){
-        console.log(err.message)
+        throw err;
     }finally{
         setloading(false)
     }
@@ -38,7 +38,7 @@ try{
     setemployee(res.employee)
     return res
 }catch(err){
-    console.log(err.message)
+   throw err;
 }finally{
     setloading(false)
 }}
@@ -64,7 +64,7 @@ const handleadminregister=async({username,
   return res
     }
     catch(err){
-        console.log(err.message)
+       throw err;
     }
     finally{
         setloading(false);
@@ -93,7 +93,7 @@ try{
     setemployee(null)
     return res
 }catch(err){
-    console.log(err.message)
+    throw err;
 }finally{
     setloading(false)
 }

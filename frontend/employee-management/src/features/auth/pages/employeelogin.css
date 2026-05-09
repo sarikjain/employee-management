@@ -95,3 +95,8 @@ button:hover {
   cursor: pointer;
   font-weight: bold;
 }
+.error{
+  color:red;
+  font-size:14px;
+  margin-top:5px;
+}

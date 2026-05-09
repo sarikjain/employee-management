@@ -6,7 +6,7 @@ import Login from "../features/auth/pages/employeelogin";
 import EmployeeProfile from "../features/employee/employeeprofile";
 import AdminForm from "../features/auth/pages/adminregister";
 import AdminLogin from "../features/auth/pages/adminlogin";
-
+import ProtectedRoute from "../components/protected_component";
 
 export  const router=createBrowserRouter([
 
@@ -15,8 +15,12 @@ export  const router=createBrowserRouter([
 
     element:<EmployeeForm/>
 },{
-    path:"/employee/profile"
-    ,element:<EmployeeProfile/>
+  
+  element: <ProtectedRoute />,  // the gate
+  children: [
+    { path: "/employee/profile", element: <EmployeeProfile /> }
+  ]
+
 }
 ,
 {
