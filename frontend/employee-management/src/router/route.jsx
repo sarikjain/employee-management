@@ -1,51 +1,97 @@
+import React, { lazy, Suspense } from "react";
 
+import { createBrowserRouter } from "react-router";
 
-import { createBrowserRouter } from "react-router"; 
-import EmployeeForm from "../features/auth/pages/employeeregister";
-import Login from "../features/auth/pages/employeelogin";
-import EmployeeProfile from "../features/employee/employeeprofile";
-import AdminForm from "../features/auth/pages/adminregister";
-import AdminLogin from "../features/auth/pages/adminlogin";
-import ProtectedRoute from "../components/protected_component";
+const EmployeeForm = lazy(() =>
+  import("../features/auth/pages/employeeregister")
+);
 
-export  const router=createBrowserRouter([
+const Login = lazy(() =>
+  import("../features/auth/pages/employeelogin")
+);
 
-{
-    path:"/employee/register",
+const EmployeeProfile = lazy(() =>
+  import("../features/employee/employeeprofile")
+);
 
-    element:<EmployeeForm/>
-},{
-  
-  element: <ProtectedRoute />,  // the gate
-  children: [
-    { path: "/employee/profile", element: <EmployeeProfile /> }
-  ]
+const AdminForm = lazy(() =>
+  import("../features/auth/pages/adminregister")
+);
 
-}
-,
-{
-    path:"/employee/login"
-    ,element:<Login/>
-}
-,
-{
-    path:"/",
-    element:<h1>Hello</h1>
-},
-{
-    path:"/admin/register"
-    ,element:<AdminForm/>
-}
-,{
-    path:"/admin/login",
-    element:<AdminLogin/>
-}
+const AdminLogin = lazy(() =>
+  import("../features/auth/pages/adminlogin")
+);
 
+const ProtectedRoute = lazy(() =>
+  import("../components/protected_component")
+);
 
+export const router = createBrowserRouter([
 
+  {
+    path: "/employee/register",
 
+    element: (
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <EmployeeForm />
+      </Suspense>
+    )
+  },
 
+  {
+    element: (
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <ProtectedRoute />
+      </Suspense>
+    ),
 
-]
+    children: [
+      {
+        path: "/employee/profile",
 
-)
+        element: (
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <EmployeeProfile />
+          </Suspense>
+        )
+      }
+    ]
+  },
+
+  {
+    path: "/employee/login",
+
+    element: (
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <Login />
+      </Suspense>
+    )
+  },
+
+  {
+    path: "/",
+
+    element: <h1>Hello</h1>
+  },
+
+  {
+    path: "/admin/register",
+
+    element: (
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <AdminForm />
+      </Suspense>
+    )
+  },
+
+  {
+    path: "/admin/login",
+
+    element: (
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <AdminLogin />
+      </Suspense>
+    )
+  }
+
+]);
