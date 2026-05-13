@@ -114,4 +114,64 @@ export async function employeelogout(){
 
 }
 
+export async function getallemployees(){
+try{
+const res=await axios.get("http://localhost:3000/api/auth/allemployees/get",{withCredentials:true})
+if(res){
+  return res.data
+}
+}catch(err){
+  throw err
+}
+
+
+
+
+
+}
+export async function getalladmins(){
+
+try{
+  const res=await axios.get("http://localhost:3000/api/auth/alladmin/get",{withCredentials:true})
+  if(res){
+    return res.data
+  }
+
+}catch(err){
+  throw err
+}
+}
+export async function deleteemployee(id){
+  try{
+  const res = await axios.delete(
+      "http://localhost:3000/api/auth/employee/delete",
+      {
+        data:{ id },
+        withCredentials:true
+      }
+    );
+
+if(res){
+  return res.data
+}
+  }catch(err){
+    throw err
+  }
+}
+
+export async function adminlogout(){
+  try{
+
+    const res=await axios.get("http://localhost:3000/api/auth/admin/logout",{withCredentials:true})
+
+if(res){
+  return res.data
+}
+
+
+  }catch(err){
+    throw  err;
+  }
+}
+
 

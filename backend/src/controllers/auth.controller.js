@@ -244,26 +244,37 @@ const token=req.cookies.token
     })
 }
  
-async function getalladmins(){
+async function getalladmins(req,res){
 
 try{
 
     const admins=await adminmodel.find({})
-    return admins;
+    return res.status(200).json(admins)
 }catch(err){
        console.log(err.message);
+       return res.status(500).json({
+      message:"Internal server error"
+    })
    
 }
 }
-async function getallemployees(){
+async function getallemployees(req,res){
+
   try{
 
-    const employees=await employeemodel.find({})
-    return employees;
-}catch(err){
-       console.log(err.message);
-   
-}  
+    const employees = await employeemodel.find({})
+
+    return res.status(200).json(employees)
+
+  }catch(err){
+
+    console.log(err.message);
+
+    return res.status(500).json({
+      message:"Internal server error"
+    })
+
+  }
 }
 async function getemployee(req,res){
     try{
@@ -317,6 +328,12 @@ return res.status(200).json({
       message: "Internal server error"
     });
 }}
+ async function deleteemployee(req,res){
+    const{id}=req.body
+    await employeemodel.findByIdAndDelete({_id:id});
+    return res.status(200).json({
+        message:"Employee has been deleted"
+    })
+ }
 
-
-module.exports={employeeregister,employeelogin,employeelogout,adminlogin,adminlogout,adminregister,getadmin,getalladmins,getallemployees,getemployee}
+module.exports={employeeregister,deleteemployee,employeelogin,employeelogout,adminlogin,adminlogout,adminregister,getadmin,getalladmins,getallemployees,getemployee}

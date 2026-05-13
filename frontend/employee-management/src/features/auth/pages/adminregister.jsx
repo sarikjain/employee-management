@@ -84,7 +84,7 @@ const AdminForm = () => {
       const res = await handleadminregister(formData)
 
       if (res) {
-        Navigate("/")
+        Navigate("/admindash")
       }
 
     }

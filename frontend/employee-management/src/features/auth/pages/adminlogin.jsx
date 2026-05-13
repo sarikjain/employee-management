@@ -48,7 +48,7 @@ const AdminLogin = () => {
             })
 
             if (res) {
-                navigate("/")
+                navigate("/admindash")
             }
 
         }

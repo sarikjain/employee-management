@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter } from "react-router"
 
 const EmployeeForm = lazy(() =>
   import("../features/auth/pages/employeeregister")
@@ -24,6 +24,9 @@ const AdminLogin = lazy(() =>
 
 const ProtectedRoute = lazy(() =>
   import("../components/protected_component")
+);
+const AdminDashboard = lazy(() =>
+  import("../features/admin/admindash")
 );
 
 export const router = createBrowserRouter([
@@ -69,9 +72,11 @@ export const router = createBrowserRouter([
   },
 
   {
-    path: "/",
+    path: "/admindash",
 
-    element: <h1>Hello</h1>
+    element: (
+    <Suspense fallback={<h1>Loading...</h1>}
+    ><AdminDashboard/></Suspense>)
   },
 
   {

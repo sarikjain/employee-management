@@ -20,7 +20,7 @@ router.get("/alladmin/get",adminmiddleware,authcontroller.getalladmins)
 router.get("/allemployees/get",adminmiddleware,authcontroller.getallemployees)
 router.get("/employee/get",employeemiddleware,authcontroller.getemployee)
 router.get("/admin/get",adminmiddleware,authcontroller.getadmin)
-
+router.delete("/employee/delete",authcontroller.deleteemployee)
 
 
 
