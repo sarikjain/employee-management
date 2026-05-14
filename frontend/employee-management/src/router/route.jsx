@@ -28,7 +28,10 @@ const ProtectedRoute = lazy(() =>
 const AdminDashboard = lazy(() =>
   import("../features/admin/admindash")
 );
-
+const Protected_component2=lazy(()=>import("../components/protected2_component")
+)
+const Adminprofile=lazy(()=>import("../features/admin/adminprofile")
+)
 export const router = createBrowserRouter([
 
   {
@@ -72,12 +75,15 @@ export const router = createBrowserRouter([
   },
 
   {
+    element:(<Suspense fallback={<h1>Loading......</h1>}><Protected_component2/>
+    </Suspense>),
+    children:[{
     path: "/admindash",
 
     element: (
     <Suspense fallback={<h1>Loading...</h1>}
-    ><AdminDashboard/></Suspense>)
-  },
+    ><AdminDashboard/></Suspense>)}
+]},
 
   {
     path: "/admin/register",
@@ -97,6 +103,16 @@ export const router = createBrowserRouter([
         <AdminLogin />
       </Suspense>
     )
-  }
+  },
+   {
+    element:(<Suspense fallback={<h1>Loading......</h1>}><Protected_component2/>
+    </Suspense>),
+    children:[{
+    path: "/adminprofile",
+
+    element: (
+    <Suspense fallback={<h1>Loading...</h1>}
+    ><Adminprofile/></Suspense>)}
+]},
 
 ]);

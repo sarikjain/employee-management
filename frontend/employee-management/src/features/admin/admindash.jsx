@@ -25,6 +25,12 @@ navigate("/employee/profile");
 
 
 }
+const Addemployee=()=>{
+  navigate("/employee/register");
+}
+const handleadminprofile=()=>{
+  navigate("/adminprofile")
+}
 const {setadmin}=useauth()
 const handlelogout=async()=>{
 
@@ -93,7 +99,7 @@ if(res){
           <li>Admins</li>
           <li>View Employees</li>
           <li>Add Employee</li>
-          <li>Admin Profile</li>
+          <li onClick={handleadminprofile}>Admin Profile</li>
          <li  onClick={()=>handlelogout()}className="logout">Logout</li>
         </ul>
       </div>
@@ -145,7 +151,7 @@ if(res){
           <div className="section-header">
             <h2>Employees List</h2>
 
-            <button className="add-btn">
+            <button id="addemployeebutton" onClick={()=>Addemployee()} className="add-btn">
               + Add New Employee
             </button>
           </div>
