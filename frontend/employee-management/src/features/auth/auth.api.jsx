@@ -173,5 +173,17 @@ if(res){
     throw  err;
   }
 }
+ export async function updateemployee(employee,data){
+try{
+const res=await axios.post("http://localhost:3000/api/auth/edit/employee",{employee,data},{withCredentials:true})
+if(res){
+  return res.data
+}
+}
+catch(err){
+  throw err
+}
 
+
+ }
 

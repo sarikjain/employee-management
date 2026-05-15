@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from "react";
 
 import { createBrowserRouter } from "react-router"
+import EditEmployee from "../features/admin/editpage";
 
 const EmployeeForm = lazy(() =>
   import("../features/auth/pages/employeeregister")
@@ -32,6 +33,7 @@ const Protected_component2=lazy(()=>import("../components/protected2_component")
 )
 const Adminprofile=lazy(()=>import("../features/admin/adminprofile")
 )
+const EditEmployee=lazy(()=>import("../features/admin/editpage"))
 export const router = createBrowserRouter([
 
   {
@@ -114,5 +116,14 @@ export const router = createBrowserRouter([
     <Suspense fallback={<h1>Loading...</h1>}
     ><Adminprofile/></Suspense>)}
 ]},
+   {
+    element:(<Suspense fallback={<h1>Loading......</h1>}><Protected_component2/>
+    </Suspense>),
+    children:[{
+    path: "/edit/employee",
 
+    element: (
+    <Suspense fallback={<h1>Loading...</h1>}
+    ><EditEmployee/></Suspense>)}
+]},
 ]);

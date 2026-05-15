@@ -336,4 +336,20 @@ return res.status(200).json({
     })
  }
 
-module.exports={employeeregister,deleteemployee,employeelogin,employeelogout,adminlogin,adminlogout,adminregister,getadmin,getalladmins,getallemployees,getemployee}
+ async function updateemployee(req,res){
+
+const {employee,data}=req.body;
+
+
+await employeemodel.findByIdAndUpdate(employee._id,data,{new:true})
+
+return res.status(201).json({
+    message:"Employee updated"
+})
+
+
+
+
+
+ }
+module.exports={updateemployee,employeeregister,deleteemployee,employeelogin,employeelogout,adminlogin,adminlogout,adminregister,getadmin,getalladmins,getallemployees,getemployee}

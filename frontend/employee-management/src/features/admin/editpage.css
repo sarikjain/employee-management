@@ -1,0 +1,84 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins",sans-serif;
+}
+
+body{
+  background:#0f172a;
+}
+
+.edit-container{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:40px;
+}
+
+.edit-form{
+  width:500px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(12px);
+  padding:40px;
+  border-radius:25px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  color:white;
+}
+
+.edit-form h1{
+  text-align:center;
+  margin-bottom:10px;
+  color:#38bdf8;
+}
+
+.edit-form input{
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  outline:none;
+  background:rgba(255,255,255,0.1);
+  color:white;
+  font-size:16px;
+}
+
+.edit-form input::placeholder{
+  color:#cbd5e1;
+}
+
+.checkbox-div{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.checkbox-div input{
+  width:20px;
+  height:20px;
+}
+
+.edit-form button{
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  background:#0ea5e9;
+  color:white;
+  cursor:pointer;
+  font-size:16px;
+  transition:0.3s ease;
+}
+
+.edit-form button:hover{
+  background:#0284c7;
+}
+
+@media(max-width:600px){
+
+  .edit-form{
+    width:100%;
+    padding:25px;
+  }
+}

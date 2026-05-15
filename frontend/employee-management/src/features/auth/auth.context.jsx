@@ -7,7 +7,10 @@ export const AuthProvider = ({ children }) => {
   const [employee, setemployee] = useState(null);
   const [admin, setadmin] = useState(null);
   const [loading, setloading] = useState(true);
-
+const [selectedemployee, setselectedemployee] = useState(() => {
+  const stored = sessionStorage.getItem("selectedemployee");
+  return stored ? JSON.parse(stored) : null;
+});
 useEffect(() => {
     const setinitialstate = async () => {
      
@@ -49,7 +52,7 @@ useEffect(() => {
         admin,
         setadmin,
         loading,
-        setloading,
+        setloading,selectedemployee,setselectedemployee
       }}
     >
       {children}

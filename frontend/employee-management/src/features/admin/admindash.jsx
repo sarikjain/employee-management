@@ -6,7 +6,8 @@ import { useEffect } from "react";
 import { useauth } from "../auth/hooks/auth.hooks";
 import { useNavigate } from "react-router";
 const AdminDashboard = () => {
-const {setemployee}=useauth()
+  const {admin}=useauth()
+const {setemployee,setselectedemployee}=useauth()
 const navigate=useNavigate()
 const handledelete=async(id)=>{
 const res=await deleteemployee(id);
@@ -23,6 +24,13 @@ const viewdetails=async(employee)=>{
 setemployee(employee);
 navigate("/employee/profile");
 
+
+}
+const handleedit=async(employee)=>{
+
+setselectedemployee(employee);
+ sessionStorage.setItem("selectedemployee", JSON.stringify(employee));
+navigate("/edit/employee")
 
 }
 const Addemployee=()=>{
@@ -97,8 +105,8 @@ if(res){
         <ul className="menu">
           <li>Dashboard</li>
           <li>Admins</li>
-          <li>View Employees</li>
-          <li>Add Employee</li>
+         
+          
           <li onClick={handleadminprofile}>Admin Profile</li>
          <li  onClick={()=>handlelogout()}className="logout">Logout</li>
         </ul>
@@ -112,13 +120,12 @@ if(res){
 
         <div className="topbar">
           <h1>Admin Dashboard</h1>
-
           <div className="admin-profile">
             <div className="admin-avatar">A</div>
 
             <div>
-              <h3>Admin</h3>
-              <p>admin@gmail.com</p>
+              <h3>{admin.username}</h3>
+              <p>{admin.email}</p>
             </div>
           </div>
         </div>
@@ -180,7 +187,7 @@ if(res){
                     View Details
                   </button>
 
-                  <button className="edit-btn">
+                  <button onClick={()=>handleedit(employee)} className="edit-btn">
                     Edit
                   </button>
 

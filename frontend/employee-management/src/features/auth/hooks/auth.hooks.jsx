@@ -6,7 +6,7 @@ import {adminlogin, adminlogout, employeelogin, employeelogout, employeeRegister
 
 export const useauth=()=>{
     const context=useContext(AuthContext)
-    const {employee,setemployee,admin,setadmin,loading,setloading}=context
+    const {employee,setemployee,admin,setadmin,loading,setloading,selectedemployee,setselectedemployee}=context
 
     const handleemployeeregister=async( {username,salary,age,email,password,workathome,
 location,
@@ -117,6 +117,6 @@ const handlelogoutadmin=async()=>{
        handleadminregister,
        handleemployeelogin,
         handleemployeeregister,
-        setadmin,setemployee,loading,setloading,admin,employee
+        setadmin,setemployee,loading,setloading,admin,employee,selectedemployee,setselectedemployee
     }
 }

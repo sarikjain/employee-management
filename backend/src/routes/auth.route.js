@@ -22,7 +22,7 @@ router.get("/employee/get",employeemiddleware,authcontroller.getemployee)
 router.get("/admin/get",adminmiddleware,authcontroller.getadmin)
 router.delete("/employee/delete",authcontroller.deleteemployee)
 
-
+router.post("/edit/employee",adminmiddleware,authcontroller.updateemployee)
 
 
 module.exports=router;
