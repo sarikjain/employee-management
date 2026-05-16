@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 
 import { createBrowserRouter } from "react-router"
-import EditEmployee from "../features/admin/editpage";
+
 
 const EmployeeForm = lazy(() =>
   import("../features/auth/pages/employeeregister")
